@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<title>PS70: Intro to Digital Fabrication </title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="../style.css" rel="stylesheet">
+
+
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <div style="align-items: left; justify-content:left;" class="container-fluid">
+    <h3 class="nav-title"> PS70: Intro to Digital Fabrication</h3>
+    <div class="navbar-nav">
+      <h4></h4>
+      <h4><a class="nav-link" href="../index.html">Home</a></h4>
+      <h4><a class="nav-link" href="../about.html">About</a></h4>
+      <h4><a class="nav-link" href="../about.html">Final Project</a></h4>
+    </div>
+  </div>
+</nav>
+
+<body>
+
+
+<xmp style="display:none;" class="center">
+<br> 
+
+#### Week 2: Laser cutting
+
+<p>
+This week I started to learn about Fusion 360 and laser cutting for the assignment I had to do a fusion 360 tutorial, create a press fit kit and laser cut it,
+and model two household items in fusion 360.
+</p>
+<br>
+
+<p><storng>Fusion 360 tutorial</strong></p>
+<br>
+<p>
+For the tutorial I decided to follow the basic one on the PS70 website in this tutorial I created an example of the press fit kit. I learned basic controls of fusion 360
+such as panning and moving around. I then learned how to create basic shapes and cxreate sketches. I then learned about offsets. After doing offsets I learned about consturction lines
+construction luines are helpful for things like mirroring and useful to perform geometric functions without being included in the shape of the object. I then learned about
+mirroring which can help with symmetry and allows the creation of objects to be speed up. Furthermore I learned aboyut parameters which function like variables in programming allowing me to use the valus in several locations
+and then having the ability to change the value in one spot so I dont have to change the value in each dimension its used it. After this I learned how to extrude sketches and then
+use those objects in assemblies to visualize several parts coming together into one object. Pictured below is the resulting object after following the tutorial. 
+</p>
+
+
+
+<br>
+<p><storng>Press fit Kit</strong></p>
+<br>
+<p>
+The first thing I wanted to do was use calipers to measure the material thickness because this is one of the critical dimensions I will need I measured the thickness to be around 4.2 mm
+I made a parameter for material thickness as well as a paramater for kerf. For each connection slot I used a consturction line for the middle and then made an offset line
+the offset is material thickness divided by 2 minus kerf. This is because I will be mirroring the line so the line needs to be half of the material thickness away but It will be a little
+less because I will loose some material due to the kerf so that is where the minus kerf term comes from. I then mirrored this offset line over the construction line to get the whole notch
+This is the process I used to create every notch.
+</p>
+<br>
+
+<p></p>
+
+</xmp>
+</body>
+
+<script src="../strapdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
+
+</html>
