@@ -31,7 +31,7 @@ This week I learned about microcontrollers and microcontroller programming
 </p>
 <br>
 
-<p><storng>initial idea</strong></p>
+<p><storng>initial idea:</strong></p>
 <br>
 <p>
 I did not want to continue working on last weeks project so I camed up with a new idea I wanted to practice using analog inputs and outpputs so I decided to make 
@@ -50,16 +50,55 @@ This means that when a hand comes across it the resistance increases and the vol
 For this to work I needed to wire up the photoresistor in series with a set value resistor at first I 
 Chose a 1k Ohm resistor and wired up the output to ground and a wire in parallel that goes into the analog input for the arduino. I then wired an output to an led and wrote some code that reads the value from the photoresistor and if its less than a certain value it lights up the LED to get this value I had to run the code and test the input values by printing them into the serial console and I used that data to tune the values in the code    
 </p>
-
-<br>
 <img src="led1.gif" alt="LED video gif"/>
-<br>
 <p>
 As you can see from the gif, sometimes the input has trouble detecting my finger. I needed to improve this in order to achieve my desired output. When I was looking at the serial output console I noticed that sometimes the values were noisy. I couldn't fix the issue in my code so I had to change my circuit. My initial idea was to change the only thing I really could without altering my idea. I had to change the resistance value of the resistor connected to the photoresistor. I replaced the 1kOhm resistor with a 20kOhm resistor. I ran the code and did the same tests to configure the right values for my if statement in my code to tune it to my input. I then ran the code again and performed the same test these were the results.
 </p>
 
+<img src="led1.gif" alt="LED video gif"/>
+
+<p>
+This is much better and a lot more stable. Now I can start working on the final product.
+</p>
+
+<br>
+
+<p><storng>Final product:</strong></p>
+<br>
+<p>
+One final thing needed to be done before I can wire up the final implementation of the design, I had to figure out about speakers so I did some research and found the arduino function tone a speaker can be connected to a pwm pin. The tone function can be used with the speaker to play a certain frequency. To implement this into code I used if and if else statements to make a conditional code block. If one of the photoresistors falls below the value threshold the if statement it represents becomes true and the code executes in this case its the tone function. If none of the conditions are met there is an else statement that uses the no tone function to turn the speaker off.  
+</p>
+
+<img src="code.png" alt="Code snippet"/>
+
+<p>It is important to note that while the delay function does stop the whole program it is only for a milisecond so the time is so small that our ears can not deteect it so while the milis function might be more efficent the results of it would not justify the amount of work it would take to impliment it</p>
+
+<br>
+
+<p>
+For the final wiring I wired each photoresistor in the same way but only had one output the speaker. Each photoresistor was connected to 5v power and went to ground with a parrallel wire going into the analog ardino pin furthermore the wire path that went to ground was connected to a 20kOhm resistor. Below is a top view of the final wiring.
+</p>
+
+<img src="circuit.jpg" alt="Code snippet"/>
+
+<p>Here is a video of it in action </p>
+
+
+<img src="final.gif" alt="Final video"/>
+
+<p>Note: I am trying to get the sound to work in the video on the website </p>
+
+<br>
+<p><storng>Moving Forward:</strong></p>
+<br>
+
+<p> Moving forward there are a few things I think I could do to improve the design. The first thing is a different microcontroller the arduino is limited to 6 anlog input pins so at most I can only have 6 different inputs and thus sounds played so this music production capability is very limited. Another thing is spacing if I put the photoresistors too close together they interfer with each other. I think I could get around this by putting little cones around the top of the photoressistors to focus the light that way the light that should be impacfing the photresistor is directly above it. One last thing I might do differently is wiring. The wiring is not easy to follow and it looks quite bad I want to go through and rewire it and make it look nicer. Some of the things I learned from this project include code and hardware interfacing sometimes you are very lijmited in what you can do in each realm of the project. For example I can only make my code so efficient at some point issues with the circuit have to be resolved because there are some issues my code just cant fix. Furthermore I learned that wiring can cause a lot of problems one loose wire can make the whole circuit break or may only break part of it but the wire/hardware design is just as important to projects as code design and must be taken into consideration preferably before any wiring is done.
+</p>
+
 </xmp>
 </body>
+
+
 
 <script src="../strapdown.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
