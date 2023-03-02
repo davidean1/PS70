@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<title>PS70: Intro to Digital Fabrication </title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="../style.css" rel="stylesheet">
+
+
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <div style="align-items: left; justify-content:left;" class="container-fluid">
+    <h3 class="nav-title"> PS70: Intro to Digital Fabrication</h3>
+    <div class="navbar-nav">
+      <h4></h4>
+      <h4><a class="nav-link" href="../index.html">Home</a></h4>
+      <h4><a class="nav-link" href="../about.html">About</a></h4>
+      <h4><a class="nav-link" href="../about.html">Final Project</a></h4>
+    </div>
+  </div>
+</nav>
+
+<body>
+
+
+<xmp style="display:none;" class="center">
+<br> 
+
+#### Week 5: 3d printing
+
+<p>
+This week I learned about 3d printing and additive manufacturing
+</p>
+<br>
+
+<p><storng>3d print</strong></p>
+<br>
+<p>
+Below is my 3d printed assignment explanation  of why I printed this and why its better to manufacture this with addative manufacturing coming later and final project section coming
+later sorry heavy midterm week :(
+</p>
+
+<img src="3dprint.jpg" alt="This weeks assignment"/>
+
+
+
+
+<img src="led1.gif" alt="LED video gif"/>
+
+<p>
+This is much better and a lot more stable. Now I can start working on the final product.
+</p>
+
+<br>
+
+<p><storng>Final product:</strong></p>
+<br>
+<p>
+One final thing needed to be done before I can wire up the final implementation of the design, I had to figure out about speakers so I did some research and found the arduino function tone a speaker can be connected to a pwm pin. The tone function can be used with the speaker to play a certain frequency. To implement this into code I used if and if else statements to make a conditional code block. If one of the photoresistors falls below the value threshold the if statement it represents becomes true and the code executes in this case its the tone function. If none of the conditions are met there is an else statement that uses the no tone function to turn the speaker off.  
+</p>
+
+<img src="code.png" alt="Code snippet"/>
+
+<p>It is important to note that while the delay function does stop the whole program it is only for a milisecond so the time is so small that our ears can not deteect it so while the milis function might be more efficent the results of it would not justify the amount of work it would take to impliment it</p>
+
+<br>
+
+<p>
+For the final wiring I wired each photoresistor in the same way but only had one output the speaker. Each photoresistor was connected to 5v power and went to ground with a parrallel wire going into the analog ardino pin furthermore the wire path that went to ground was connected to a 20kOhm resistor. Below is a top view of the final wiring.
+</p>
+
+<img src="circuit.jpg" alt="Code snippet"/>
+
+<p>Here is a video of it in action </p>
+
+
+<img src="final.gif" alt="Final video"/>
+
+<p>Note: I am trying to get the sound to work in the video on the website </p>
+
+<br>
+<p><storng>Moving Forward:</strong></p>
+<br>
+
+<p> Moving forward there are a few things I think I could do to improve the design. The first thing is a different microcontroller the arduino is limited to 6 anlog input pins so at most I can only have 6 different inputs and thus sounds played so this music production capability is very limited. Another thing is spacing if I put the photoresistors too close together they interfer with each other. I think I could get around this by putting little cones around the top of the photoressistors to focus the light that way the light that should be impacfing the photresistor is directly above it. One last thing I might do differently is wiring. The wiring is not easy to follow and it looks quite bad I want to go through and rewire it and make it look nicer. Some of the things I learned from this project include code and hardware interfacing sometimes you are very lijmited in what you can do in each realm of the project. For example I can only make my code so efficient at some point issues with the circuit have to be resolved because there are some issues my code just cant fix. Furthermore I learned that wiring can cause a lot of problems one loose wire can make the whole circuit break or may only break part of it but the wire/hardware design is just as important to projects as code design and must be taken into consideration preferably before any wiring is done.
+</p>
+
+</xmp>
+</body>
+
+
+
+<script src="../strapdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
+
+</html>
