@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<title>PS70: Intro to Digital Fabrication </title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="../style.css" rel="stylesheet">
+
+
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <div style="align-items: left; justify-content:left;" class="container-fluid">
+    <h3 class="nav-title"> PS70: Intro to Digital Fabrication</h3>
+    <div class="navbar-nav">
+      <h4></h4>
+      <h4><a class="nav-link" href="../index.html">Home</a></h4>
+      <h4><a class="nav-link" href="../about.html">About</a></h4>
+      <h4><a class="nav-link" href="../about.html">Final Project</a></h4>
+    </div>
+  </div>
+</nav>
+
+<body>
+
+
+<xmp style="display:none;" class="center">
+<br> 
+
+#### Week 6: input devices
+
+<p>
+This week I learned about input devices
+</p>
+<br>
+
+<p><storng>Capacative sensor</strong></p>
+<br>
+<p>
+I made a capacitive sensor with a piece of styrofoam and two sheets of copper taped to each side. This uses capacitance to measure force because the capacitance between two plates depends on distance and will increase when distance decreases. When a force is applied the plates get closer together and capacitance increases and can be related to the amount of force. Because we are measuring force we can relate this to mass as well. For my calibration I measured mass in kg vs the output of the arduinos sensor which is unitless. Below is a table showing my data.
+</p>
+
+<img src="table1.png" alt="This weeks assignment"/>
+<br>
+
+<p>
+Based on my data points it seems like the capacitance will only go so high because the styrofoam in between the plates can only get so close so it appears that a square root function will be good to model this data. I will be using linear algebra to do data fitting. Unfortunately sqrt functions are hard to linearize and google sheets is unable to do it. I decided to take the Taylor series expansion of sqrt(x+(400,000)^2). 400,000 comes from the x intercept of 400,000, which seems like a reasonable assumption for my data. I decided to do an 80-20 split and use 80% of my data points for training the model and 2% for testing the model. This means I would have 4 training data points and at most could do a polynomial of the 4th degree, so I only need the first 4 terms of the Taylor expansion. Unfortunately after fitting the data because we are dealing with  taylor series it is only accurate to a certain extent. In this case is it only accurate for the first two data points? If I had more data points it would be accurate for mass values further from zero so this is not a good model in this case.
+</p>
+    
+
+<img src="squareroot1.png" alt="sqrt graph"/>
+
+<br>
+<p>
+I then noticed that if I take the logarithm (base 10) of the arduino sensor values it looks more linear and I could map a polynomial of degree two to it that was very accurate. I used excel to find the polynomial and raised it to the power of ten to get an equation for just y values instead of log(y) values. Below are the graphs of both of those models. 
+</p>
+
+<img src="graph1.png" alt="graph"/>
+
+<img src="graph1log.png" alt="log graph"/>
+
+<br>
+
+<p>
+Overall I think The logarithm model best matches my physical intuition and is very accurate so it is the best model in this case. It is important to note that I am evaluating these models on physical intuition as in they make physical sense and their mathematical accuracy using RSS. This disqualifies a 4th degree polynomial as a best fit. While it is perfectly accurate it overfits the data and does not make physical sense. It was okay to use a 4th degree polynomial in the square root case because I was approximating a square root function using polynomials. FUrthermore as predicted the higher the mass (which correlates to a higher force due to gravity) the higher the arduino sensor value. 
+</p>
+
+</xmp>
+</body>
+
+
+
+<script src="../strapdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
+
+</html>
