@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+
+
+<title>PS70: Intro to Digital Fabrication </title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="../style.css" rel="stylesheet">
+
+
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <div style="align-items: left; justify-content:left;" class="container-fluid">
+    <h3 class="nav-title"> PS70: Intro to Digital Fabrication</h3>
+    <div class="navbar-nav">
+      <h4></h4>
+      <h4><a class="nav-link" href="../index.html">Home</a></h4>
+      <h4><a class="nav-link" href="../about.html">About</a></h4>
+      <h4><a class="nav-link" href="../about.html">Final Project</a></h4>
+    </div>
+  </div>
+</nav>
+
+<body>
+
+
+<xmp style="display:none;" class="center">
+<br> 
+
+#### Week 6: input devices
+
+<p>
+This week I learned about output devices
+</p>
+<br>
+
+<p><storng>Potentiometers and button LED controller</strong></p>
+<br>
+<p>
+I wanted to make a way to control LEDS. the way I did this was using potentiometers. In order to avoid reusing code I made a potentiometer class which has the pin value and resolution and map values this enables me to create a potentiometer object and record the input from it and map it to a set of values and I can control the resolution sop this can be used on any microcontroller.The lab ran out of LEd strips so I used RGB Leds and I made my own LED class with the pins for the rgb channels and a function to light the LED. I then used a button to send that information to the LED. The button is what updates the selected LED with the right colors chosen by the user. IF I used an LED strip I would have used the FastLED library to control LEDS but I used my own class to control LEDS since it was individual RGB LEDS. Below is the video/code snippet:
+</p>
+
+
+
+<img src="topview (1).jpg" alt="This weeks assignment"/>
+<br>
+<img src="sideview.jpg" alt="sqrt graph"/>
+<img src="potled.gif" alt="sqrt graph"/>
+
+<code>
+    
+class pot
+{
+
+    // Known limitations with this class:
+// Must have mapValue > 1 when dealing with arduino and analog Read if its just one the value will fluctuate and always be zero no matter what this is only a problem with mapValue = 1
+// Because we are measuring potential difference 
+
+
+private:
+    
+// used with map function in arduino in the form map(0, maxAnalogValue, 0, mapValue)
+    int mapValue;
+    int maxAnalogVal;
+    int pin;
+
+    public:
+    
+    // constructor
+    
+    pot(int mapVal, int maxAnalog, int pinVal) 
+    {
+        
+        mapValue = mapVal;
+        maxAnalogVal = maxAnalog;
+        pin = pinVal;
+    
+    }
+
+
+    int mapPotValue(int value);
+    int getMapValue();
+    int getMaxAnalogVal();
+    int getPin();
+    int readPin();
+
+    int potValue;
+};
+
+int pot::getMapValue () 
+{
+    return mapValue;
+}
+
+int pot::getMaxAnalogVal() 
+{
+    return maxAnalogVal;
+}
+
+int pot::mapPotValue(int value) 
+{
+   return map(value, 0, maxAnalogVal, 0, mapValue); 
+}
+
+int pot::getPin()
+{
+   return pin;
+}
+
+int pot::readPin() 
+{
+    return analogRead(pin);
+}
+
+class led 
+{
+  
+    private:
+    
+    int redPin;
+    int greenPin;
+    int bluePin;
+  
+  public:
+
+  led(int rpin, int gpin, int bpin) 
+  {
+    
+    redPin = rpin;
+    
+    greenPin = gpin;
+    
+    bluePin = bpin;
+  
+}
+
+  writeLed(int redValue, int greenValue, int blueValue);
+
+};
+
+led::writeLed(int redValue, int greenValue, int blueValue) 
+{
+  
+    analogWrite(redPin, redValue);
+  
+    analogWrite(bluePin, blueValue);
+  
+    analogWrite(greenPin, greenValue);  
+}
+
+// initialise hardware variables
+
+pot selector(2, 1023, A0);
+
+pot red(255, 1023, A1);
+
+pot green(255, 1023, A2);
+
+pot blue(255, 1023, A3);
+
+led ledOne(2, 3, 4);
+
+led ledTwo(5, 6, 7);
+
+int buttonState = 0;
+
+const int buttonPin = 13;
+
+// initialise timing variables
+
+unsigned long previousMillis = 0;
+
+const long interval = 1000;
+
+void setup() 
+{
+
+  Serial.begin(9600);
+
+}
+
+void loop() 
+{
+  unsigned long currentMillis = millis();
+  
+  
+  // Gets selector values and values for RGB from pots
+  
+  selector.potValue = selector.mapPotValue(selector.readPin());
+  
+  red.potValue = red.mapPotValue(red.readPin());
+  
+  green.potValue = green.mapPotValue(green.readPin());
+  
+  blue.potValue = blue.mapPotValue(blue.readPin());
+ 
+
+  // prints readings back to user every second.followed the Arduino sample for using millis to time things without a delay.
+  
+  if (currentMillis - previousMillis >= interval) 
+  {
+    
+    previousMillis = currentMillis;
+    
+    
+    Serial.println("Selector: ");
+    
+    Serial.println(selector.potValue);
+
+    
+    Serial.println("red: ");
+    
+    Serial.println(red.potValue);
+
+    Serial.println("green: ");
+    
+    Serial.println(green.potValue);
+
+    Serial.println("blue: ");
+    
+    Serial.println(blue.potValue);
+  
+}
+  
+  
+  // upon button press sends all the info to an led strip to update with user choices.
+  // Note: there were no Led strips int he lab this is an inefficent use of the potentiometer class for selector. The potentiometer class was designed for use in LED strips using libraies like FastLED
+  
+  buttonState = digitalRead(buttonPin);
+
+  if (buttonState == HIGH) 
+  {
+    
+    if (selector.potValue == 0) 
+    {
+
+        ledOne.writeLed(red.potValue, green.potValue, blue.potValue);
+
+    }
+    
+    if(selector.potValue == 1) 
+
+    {
+
+        ledTwo.writeLed(red.potValue, green.potValue, blue.potValue);
+
+    }
+
+}
+
+  
+}
+</code>
+
+
+<p>Circuit schematic coming soon as well as fixing the code snippet errors</p>
+
+<p>
+To improve upon this design I would add a screen where the user can see the led selected and the rgb values instead of using the serial moniter.
+</p>
+</xmp>
+</body>
+
+
+
+<script src="../strapdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
+
+</html>
