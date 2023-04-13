@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<title>PS70: Intro to Digital Fabrication </title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="../style.css" rel="stylesheet">
+
+
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <div style="align-items: left; justify-content:left;" class="container-fluid">
+    <h3 class="nav-title"> PS70: Intro to Digital Fabrication</h3>
+    <div class="navbar-nav">
+      <h4></h4>
+      <h4><a class="nav-link" href="../index.html">Home</a></h4>
+      <h4><a class="nav-link" href="../about.html">About</a></h4>
+      <h4><a class="nav-link" href="../about.html">Final Project</a></h4>
+    </div>
+  </div>
+</nav>
+
+<body>
+
+
+<xmp style="display:none;" class="center">
+<br> 
+
+#### Week 10: machine building and minimum viable product
+<p>
+This week I learned about machine building and I was tasked with taking one of the most intimidating part of my project and making a solid attempt at it
+</p>
+<br>
+
+<p><storng>Machine building</strong></p>
+<br>
+<p>
+I am in fridays group for the machine buildingh project and I am on the software team
+</p>
+
+
+
+<p><storng>MVP</strong></p>
+
+<p>
+    The most challenging aspect of my project right now is the communication between my computer and the microcontroller. This is a huge challenge right now because I need to do some image processing work in python and then I need to send that information to my esp 32 using sockets which I have never used before. To tackle this challenge I wanted to make sure everything was good on the python side of things since that is the work I have never done before. I researched protocols I could use and decided on TCP that sends information over a byte stream. I chose TCP because while it is slower than a protocol like UDP it is better to ensure that all data is actually transferred and no information is lost. 
+</p>
+
+
+
+<p><storng>Client/server and other design aspects. </strong></p>
+<p>I wanted to use a client server model for my communication. In this case the ESP 32 will be the client and my Python script will use sockets to act as the server. The server can only accept one connection. I designed it this way because I only want it to work with one ESP32. I want the pixel information to be sent over one color at a time. I want to send the Red Bytes, then the Green Bytes, and then the Blue Bytes. I wanted this because I wanted the ESP32 to be able to store this information in arrays that will be used by the FAST LED library. Because TCP uses a byte stream the way I did this was using the python pillow library to store the pixel information in arrays. I then sent the red array and then the green array and then the blue array. This design is important because it's going to be useful when designing the code on the client side. Because c++ does not have dynamically sized arrays I am going to have the python script also send information over on how many pixels the image has so the correct array sizes can be made. Furthermore, so the esp32 knows when one information stream ends and another begins. I will be sending end tags between each array list. I will be sending the red bytes then an end tag such as end red so the esp 32 then knows the red bytes are over and to start looking for the green bytes. 
+</p>
+
+<br>
+
+
+</xmp>
+</body>
+
+
+
+<script src="../strapdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
+
+</html>
