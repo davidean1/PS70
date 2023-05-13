@@ -13,7 +13,6 @@
       <h4></h4>
       <h4><a class="nav-link" href="../index.html">Home</a></h4>
       <h4><a class="nav-link" href="../about.html">About</a></h4>
-      <h4><a class="nav-link" href="../about.html">Final Project</a></h4>
     </div>
   </div>
 </nav>
@@ -33,7 +32,7 @@ This week I learned about machine building and I was tasked with taking one of t
 <p><storng>Machine building</strong></p>
 <br>
 <p>
-I am in fridays group for the machine buildingh project and I am on the software team
+I am in fridays group for the machine buildingh project and I am on the software team. For the software, of the machine we had several ideas. One of the ideas was treating the drawing machine as a CNC machine and using G code. I was in charge of researching and trying to implement the G code approach. I started out with a resource called GRBL which is a framework to use control software and G code with an Arduino from there we found a subset made by someone else called Fluid NC. Fluid NC is based on GRBL but it is designed for the ESP 32. Fluid NC can control up to 5 axes and it can control coolant systems. A lot of the work up to this point was research and theoretical. Not much code could be done until we had something to test it on. The hardware team got us the completed project the day before it was due so we were in a rush to finish it. It turns out Fluid NCs documentation is not great and the setup files are hard to make and modify while they do have examples they are not explained and we simply could not get the setup files to work. Once the setup file worked all you had to do was upload the G code and the drawing machine would execute the g code. It's important to note that even with setup files correctly implemented it would still take trial and error to get the rile values for step count to fully implement. Fluid NC works off of firmware so we uploaded it to an ESP32. Fluid NC only works with the first generation of ESP 32. It creates its on web server so it is possible to use it on your phone or computer which would be really cool. Ultimately I believe FLuid NC is designed to be used with CNC shield extensions for the Arduino so I think that would be an avenue to explore in the future. We couldn't get Fluid NC to work but we were able to get the drawing machine to draw circles and lines. While it was not the outcome we hoped for we learned a lot from the project and have a plan moving forward on how to improve it.
 </p>
 
 
